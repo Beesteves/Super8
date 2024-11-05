@@ -1,4 +1,6 @@
 ##### Composer
+composer.json
+composer.lock
 composer.phar
 vendor/
 
@@ -10,3 +12,6 @@ composer.lock
 .phpunit.result.cache
 .phpunit.cache/
 
+node_modules/
+npm-debug.log
+package.json
