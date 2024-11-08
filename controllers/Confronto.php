@@ -1,28 +1,29 @@
 <?php
 
-class AtletaController{
-    private $atleta;
+class ConfrontoController{
+    private $confronto;
 
     public function __construct($db){
-        $this->atleta = new Atleta($db);
+        $this->confronto = new Confronto($db);
     }
 
     public function list(){
-        $atletas = $this->atleta->list();
-        echo json_encode($atletas);
+        $confrontos = $this->confronto->list();
+        echo json_encode($confrontos);
     }
 
     public function create()    {
         $data = json_decode(file_get_contents("php://input"));
-        if (isset($data->nome) && isset($data->id)) {
+        if (isset($data->atleta1) && isset($data->atleta2) && ($data->atleta3) && ($data->atleta4)) {
             try {
-                $this->atleta->create($data->id, $data->nome);
+                $result = 0;
+                $this->confronto->create($data->atleta1, $data->atleta2, $data->atleta3, $data->atleta4, $data->$result, $data->$result);
 
                 http_response_code(201);
-                echo json_encode(["message" => "Atleta inserido com sucesso."]);
+                echo json_encode(["message" => "Confronto criado com sucesso."]);
             } catch (\Throwable $th) {
                 http_response_code(500);
-                echo json_encode(["message" => "Erro ao inserir atleta."]);
+                echo json_encode(["message" => "Erro ao criar confronto."]);
             }
         } else {
             http_response_code(400);
@@ -34,16 +35,16 @@ class AtletaController{
     {
         if (isset($id)) {
             try {
-                $atletas = $this->atleta->getById($id);
-                if ($atletas) {
-                    echo json_encode($atletas);
+                $confrontos = $this->confronto->getById($id);
+                if ($confrontos) {
+                    echo json_encode($confrontos);
                 } else {
                     http_response_code(404);
-                    echo json_encode(["message" => "Atleta não encontrado."]);
+                    echo json_encode(["message" => "Confronto não encontrado."]);
                 }
             } catch (\Throwable $th) {
                 http_response_code(500);
-                echo json_encode(["message" => "Erro ao buscar atleta."]);
+                echo json_encode(["message" => "Erro ao buscar confronto."]);
             }
         } else {
             http_response_code(400);
@@ -54,19 +55,19 @@ class AtletaController{
     public function update($id)
     {
         $data = json_decode(file_get_contents("php://input"));
-        if (isset($id) && isset($data->nome)) {
+        if (isset($id) && isset($data->resultado1) && isset($data->resultado2)) {
             try {
-                $count = $this->atleta->update($id, $data->nome);
+                $count = $this->confronto->update($id, $data->resultado1, $data->resultado2);
                 if ($count > 0) {
                     http_response_code(200);
-                    echo json_encode(["message" => "Atleta atualizado com sucesso."]);
+                    echo json_encode(["message" => "Resultado atualizado com sucesso."]);
                 } else {
                     http_response_code(500);
-                    echo json_encode(["message" => "Erro ao atualizar atleta."]);
+                    echo json_encode(["message" => "Erro ao atualizar resultado."]);
                 }
             } catch (\Throwable $th) {
                 http_response_code(500);
-                echo json_encode(["message" => "Erro ao atualizar atleta."]);
+                echo json_encode(["message" => "Erro ao atualizar resultado."]);
             }
         } else {
             http_response_code(400);
@@ -79,18 +80,18 @@ class AtletaController{
         $data = json_decode(file_get_contents("php://input"));
         if (isset($id)) {
             try {
-                $count = $this->atleta->delete($id);
+                $count = $this->confronto->delete($id);
 
                 if ($count > 0) {
                     http_response_code(200);
-                    echo json_encode(["message" => "Atleta deletado com sucesso."]);
+                    echo json_encode(["message" => "Confronto deletado com sucesso."]);
                 } else {
                     http_response_code(500);
-                    echo json_encode(["message" => "Erro ao deletar atleta."]);
+                    echo json_encode(["message" => "Erro ao deletar confronto."]);
                 }
             } catch (\Throwable $th) {
                 http_response_code(500);
-                echo json_encode(["message" => "Erro ao deletar atleta."]);
+                echo json_encode(["message" => "Erro ao deletar confronto."]);
             }
         } else {
             http_response_code(400);
