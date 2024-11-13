@@ -36,7 +36,7 @@ class Atleta{
         $sql = "UPDATE atleta SET nome = :nome WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id', $id);
-        $stmt->bindParam(':name', $nome);
+        $stmt->bindParam(':nome', $nome);
         $stmt->execute();
         return $stmt->rowCount();
     }

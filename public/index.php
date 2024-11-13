@@ -5,7 +5,7 @@ require_once '../controllers/Confronto.php';
 require_once '../Router.php';
 
 
-header("Content-type: aplication/json; charset=UTF-8");
+header("Content-type: application/json; charset=UTF-8");
 
 $router = new Router();
 $atletaController = new AtletaController($pdo);
@@ -23,8 +23,10 @@ $router->add('POST', '/confronto', [$confrontoController, 'create']);
 $router->add('DELETE', '/confronto/{id}', [$confrontoController, 'delete']);
 $router->add('PUT', '/confronto/{id}', [$confrontoController, 'update']);
 
+
 $requestedPath = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 $pathItems = explode("/", $requestedPath);
-$requestedPath = "/" . $pathItems[3] . ($pathItems[4] ? "/" . $pathItems[4] : "");
+$requestedPath = "/" . $pathItems[count($pathItems) - 2] . 
+    (isset($pathItems[count($pathItems) - 1]) ? "/" . $pathItems[count($pathItems) - 1] : "");
 
 $router->dispatch($requestedPath);

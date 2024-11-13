@@ -11,10 +11,10 @@ CREATE TABLE atleta(
 
 CREATE TABLE confronto(
     confronto_id INT AUTO_INCREMENT PRIMARY KEY,
-    atleta1 VARCHAR(50),
-    atleta2 VARCHAR(50),
-    atleta3 VARCHAR(50),
-    atleta4 VARCHAR(50),
+    atleta1 INT,
+    atleta2 INT,
+    atleta3 INT,
+    atleta4 INT,
     resultado1 INT,
     resultado2 INT
 )
