@@ -1,4 +1,5 @@
 <?php
+require_once '../models/Confronto.php';
 
 class ConfrontoController{
     private $confronto;

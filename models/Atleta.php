@@ -1,4 +1,5 @@
 <?php
+require_once '../config/db.php';
 
 class Atleta{
     private $conn;
@@ -8,7 +9,7 @@ class Atleta{
     }
 
     public function create($id, $nome){
-        $sql = "INSERT INTO atleta (id, nome, vitoria, saldo_game) VALUES (:id, :nome, 0, 0)";
+        $sql = "INSERT INTO atleta (id, nome, vitoria, saldo_games) VALUES (:id, :nome, 0, 0)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':nome', $nome);
@@ -16,7 +17,7 @@ class Atleta{
     }
 
     public function list(){
-        $sql = "SELECT id, nome, vitoria, saldo_game FROM atleta";
+        $sql = "SELECT id, nome, vitoria, saldo_games FROM atleta";
         $stmt = $this->conn->prepare($sql);
         $stmt-> execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -48,5 +49,13 @@ class Atleta{
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         return $stmt->rowCount();
+    }
+
+    public function deleteAll() {
+        $sql = "DELETE FROM atleta";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        http_response_code(200);
+        echo json_encode(["message" => "Todos os atletas foram apagados com sucesso."]);
     }
 }

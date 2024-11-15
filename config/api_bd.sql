@@ -3,7 +3,7 @@ CREATE DATABASE api_db;
 USE api_db;
 
 CREATE TABLE atleta(
-    atleta_id INT PRIMARY KEY,
+    id INT PRIMARY KEY,
     nome VARCHAR(50) NOT NULL,
     vitoria INT,
     saldo_games INT

@@ -1,5 +1,7 @@
 <?php
 
+header("Access-Control-Allow-Origin: http://localhost:1113");
+
 class Router
 {
     private $routes = [];
@@ -13,13 +15,15 @@ class Router
     public function dispatch($requestedPath)
     {
         $requestedMethod = $_SERVER["REQUEST_METHOD"];
+        echo "Método: " . $requestedMethod . "<br>"; 
 
         foreach ($this->routes as $route) {
             if ($route['method'] === $requestedMethod && preg_match($route['path'], $requestedPath, $matches)) {
-                array_shift($matches);
-                return call_user_func($route['callback'], $matches[0]);
+                array_shift($matches); 
+                return call_user_func_array($route['callback'], $matches); 
             }
         }
-        echo "404 - Página não encontrada";
+        
+        echo "404 - Página não encontrada"; 
     }
 }

@@ -1,4 +1,5 @@
 <?php
+require_once '../models/Atleta.php';
 
 class AtletaController{
     private $atleta;
@@ -13,10 +14,10 @@ class AtletaController{
     }
 
     public function create()    {
-        $data = json_decode(file_get_contents("php://input"));
-        if (isset($data->nome) && isset($data->id)) {
+        $data = json_decode(file_get_contents("php://input"), true);
+        if (isset($data['id']) && isset($data['nome'])) {
             try {
-                $this->atleta->create($data->id, $data->nome);
+                $this->atleta->create($data['id'], $data['nome']);
 
                 http_response_code(201);
                 echo json_encode(["message" => "Atleta inserido com sucesso."]);
