@@ -54,8 +54,6 @@ class Atleta{
     public function deleteAll() {
         $sql = "DELETE FROM atleta";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute();
-        http_response_code(200);
-        echo json_encode(["message" => "Todos os atletas foram apagados com sucesso."]);
+        return $stmt->execute();
     }
 }

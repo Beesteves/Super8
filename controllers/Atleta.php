@@ -98,4 +98,22 @@ class AtletaController{
             echo json_encode(["message" => "Dados incompletos."]);
         }
     }
+
+    public function deleteAll()
+    {
+        try {
+            $count = $this->atleta->deleteAll();
+
+            if ($count > 0) {
+                http_response_code(200);
+                echo json_encode(["message" => "Todos os atletas foram deletados com sucesso."]);
+            } else {
+                http_response_code(404);
+                echo json_encode(["message" => "Nenhum atleta encontrado para deletar."]);
+            }
+        } catch (\Throwable $th) {
+            http_response_code(500);
+            echo json_encode(["message" => "Erro ao deletar atletas."]);
+        }
+    }
 }

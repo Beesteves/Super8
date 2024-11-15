@@ -1,47 +1,41 @@
+document.getElementById("btn-save").onclick = async (event) => {
+    event.preventDefault();
 
-    document.getElementById("btn-save").onclick = async (event) => {
-        event.preventDefault();
-        const messageDiv = document.getElementById("message");
     
+    const messageDiv = document.getElementById("message");
+    
+
         try {
-            // Realiza uma requisição DELETE para apagar todos os atletas
-            let deleteResponse = await fetch("http://localhost:8000/public/atleta/all", {
+            const response = await fetch('http://localhost:8000/public/atleta/all', {
                 method: "DELETE",
-                headers: { "Content-Type": "application/json" }
-            });
-    
-            if (!deleteResponse.ok) {
-                throw new Error("Erro ao limpar atletas.");
-            }
-    
-            // Loop para adicionar novos atletas
+                headers: { 
+                    "Content-Type": "application/json"
+                },
+            })
+
             for (let i = 1; i <= 8; i++) {
-                const nome = document.getElementById(`atleta${i}`).value;
-    
-                const response = await fetch("http://localhost:8000/public/atleta", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ id: i, nome: nome })
-                });
-    
-                if (!response.ok) {
-                    throw new Error("Erro ao cadastrar atleta.");
-                }
-    
-                // Verifica se a resposta tem conteúdo antes de chamar response.json()
-                const result = response.headers.get("content-length") > 0 ? await response.json() : {};
-                if (result.message) {
-                    messageDiv.innerHTML = `<div class="alert alert-success">${result.message}</div>`;
-                } else {
-                    messageDiv.innerHTML = `<div class="alert alert-success">Atleta cadastrado com sucesso.</div>`;
-                }
+            const nome = document.getElementById(`atleta${i}`).value;
+            const response = await fetch("http://localhost:8000/public/atleta", {
+                method: "POST",
+                mode: "no-cors",
+                headers: { 
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ id: i, nome: nome})
+            });
+        }
+
+            const result = await response.json();
+            if (response.ok) {
+                messageDiv.innerHTML = `<div class="alert alert-success">${result.message}</div>`;
                 document.getElementById("atletasForm").reset();
+            } else {
+                messageDiv.innerHTML = `<div class="alert alert-danger">${result.message}</div>`;
             }
         } catch (error) {
-            messageDiv.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
+            messageDiv.innerHTML = `<div class="alert alert-danger">Cadastrar atletas com sucesso.</div>`;
         }
-    };
-    
+};
 
 // Função para carregar e exibir os atletas
 async function loadAthletes() {
@@ -64,7 +58,7 @@ async function editAtleta(id, nome) {
     const messageDiv = document.getElementById("message");
 
     try {
-        const response = await fetch(`http://localhost:8000/public/atleta/${id}`, {
+        const response = await fetch(`http://localhost:8000/public/atleta${id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ nome })
