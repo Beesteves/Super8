@@ -17,7 +17,7 @@ class Atleta{
     }
 
     public function list(){
-        $sql = "SELECT id, nome, vitoria, saldo_games FROM atleta";
+        $sql = "SELECT id, nome, vitoria, saldo_games FROM atleta ORDER BY vitoria DESC, saldo_games DESC;";
         $stmt = $this->conn->prepare($sql);
         $stmt-> execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -25,7 +25,7 @@ class Atleta{
 
     public function getById($id)
     {
-        $sql = "SELECT * FROM atleta WHERE id = :id";
+        $sql = "SELECT nome FROM atleta WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
@@ -56,4 +56,5 @@ class Atleta{
         $stmt = $this->conn->prepare($sql);
         return $stmt->execute();
     }
+
 }

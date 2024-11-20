@@ -10,7 +10,7 @@ CREATE TABLE atleta(
 );
 
 CREATE TABLE confronto(
-    confronto_id INT AUTO_INCREMENT PRIMARY KEY,
+    confronto_id INT PRIMARY KEY,
     atleta1 INT,
     atleta2 INT,
     atleta3 INT,

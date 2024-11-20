@@ -10,7 +10,9 @@ class AtletaController{
 
     public function list(){
         $atletas = $this->atleta->list();
-        echo json_encode($atletas);
+        header('Content-Type: application/json; charset=UTF-8');
+        echo json_encode($atletas, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        exit;
     }
 
     public function create()    {
@@ -18,7 +20,7 @@ class AtletaController{
         if (isset($data['id']) && isset($data['nome'])) {
             try {
                 $this->atleta->create($data['id'], $data['nome']);
-
+                header('Content-Type: application/json');
                 http_response_code(201);
                 echo json_encode(["message" => "Atleta inserido com sucesso."]);
             } catch (\Throwable $th) {
@@ -58,6 +60,7 @@ class AtletaController{
         if (isset($id) && isset($data->nome)) {
             try {
                 $count = $this->atleta->update($id, $data->nome);
+                header('Content-Type: application/json');
                 if ($count > 0) {
                     http_response_code(200);
                     echo json_encode(["message" => "Atleta atualizado com sucesso."]);
@@ -116,4 +119,5 @@ class AtletaController{
             echo json_encode(["message" => "Erro ao deletar atletas."]);
         }
     }
+
 }

@@ -1,0 +1,203 @@
+/* Definir fonte padrão e cores principais */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container principal */
+.container {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+/* Títulos principais */
+h2, h4 {
+    text-align: center;
+    color: #1976D2;
+}
+
+/* Formatação para os inputs */
+input[type="text"] {
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 14px;
+    width: 100%;
+}
+
+input[type="text"]:focus {
+    border-color: #1976D2;
+    outline: none;
+}
+
+/* Colunas dentro do formulário */
+.row {
+    margin-bottom: 20px;
+}
+
+/* Botões para editar */
+.btn-floating {
+    background-color: #1976D2;
+    color: white;
+    margin-top: 26px;
+}
+
+/* Botão de cadastro */
+#btn-save {
+    background-color: #28a745;
+    color: white;
+    width: 100%;
+    padding: 7px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 20px; 
+    line-height: 1.5;
+    text-align: center; 
+    transition: background-color 0.3s ease;
+}
+
+#btn-save:hover {
+    background-color: #218838;
+}
+
+/* Tabela de resultados */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #1976D2;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #e9ecef;
+}
+
+/* Seções de mensagem */
+#message {
+    text-align: center;
+    font-size: 18px;
+    color: #e74c3c;
+}
+
+#etapa2, #etapa3 {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 30px;
+}
+
+#confrontosLista {
+    margin-bottom: 20px;
+}
+
+/* Botões adicionais */
+button {
+    background-color: #1976D2;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #1565c0;
+}
+
+#jogos {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+/* Estilo para os nomes dos jogadores */
+.jogo-atletas1 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1976D2;
+    text-align: right;
+}
+
+.jogo-atletas2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #1976D2;
+    text-align: left;
+}
+
+#dupla1 {
+    text-align: end;
+}
+
+/* Estilo para o "X" */
+.jogo-x {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+}
+
+/* Estilo para os inputs */
+.resultado {
+    width: 50px;
+    height: 40px;
+    padding: 5px;
+    font-size: 16px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 0 10px;
+}
+
+.resultado:focus {
+    border-color: #1976D2;
+    outline: none;
+}
+
+/* Estilo para o botão de enviar */
+.btn-enviar {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-enviar:hover {
+    background-color: #218838;
+}

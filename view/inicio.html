@@ -9,60 +9,91 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script defer src="./script.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <div class="container mt-5">
         <h2>Super 8 - Beach Tennis</h2>
         <form id="atletasForm">
-            <div class="form-group">
+            <div class="row">
+            <div class="col s5">
                 <label for="atleta1">Nome do Atleta 1</label>
-                <input type="text" id="atleta1" name="atleta1" class="form-control" required>
+                <input type="text" id="atleta1" name="atleta1" class="form-control" required>                
+            </div>
+            <div class="col s1">
                 <a class="btn-floating disabled" id="edit1"><i class="material-icons">edit</i></a>
             </div>
-            <div class="form-group">
+            <div class="col s5">
                 <label for="atleta2">Nome do Atleta 2</label>
                 <input type="text" id="atleta2" name="atleta2" class="form-control" required>
+            </div>
+            <div class="col s1">
                 <a class="btn-floating disabled" id="edit2"><i class="material-icons">edit</i></a>
             </div>
-            <div class="form-group">
+            <div class="col s5">
                 <label for="atleta3">Nome do Atleta 3</label>
                 <input type="text" id="atleta3" name="atleta3" class="form-control" required>
+            </div>
+            <div class="col s1">
                 <a class="btn-floating disabled" id="edit3"><i class="material-icons">edit</i></a>
             </div>
-            <div class="form-group">
+            <div class="col s5">
                 <label for="atleta4">Nome do Atleta 4</label>
                 <input type="text" id="atleta4" name="atleta4" class="form-control" required>
+            </div>
+            <div class="col s1">
                 <a class="btn-floating disabled" id="edit4"><i class="material-icons">edit</i></a>
             </div>
-            <div class="form-group">
+            <div class="col s5">
                 <label for="atleta5">Nome do Atleta 5</label>
                 <input type="text" id="atleta5" name="atleta5" class="form-control" required>
+            </div>
+            <div class="col s1">
                 <a class="btn-floating disabled" id="edit5"><i class="material-icons">edit</i></a>
             </div>
-            <div class="form-group">
+            <div class="col s5">
                 <label for="atleta6">Nome do Atleta 6</label>
                 <input type="text" id="atleta6" name="atleta6" class="form-control" required>
+            </div>
+            <div class="col s1">
                 <a class="btn-floating disabled" id="edit6"><i class="material-icons">edit</i></a>
             </div>
-            <div class="form-group">
+            <div class="col s5">
                 <label for="atleta7">Nome do Atleta 7</label>
                 <input type="text" id="atleta7" name="atleta7" class="form-control" required>
+            </div>
+            <div class="col s1">
                 <a class="btn-floating disabled" id="edit7"><i class="material-icons">edit</i></a>
             </div>
-            <div class="form-group">
+            <div class="col s5">
                 <label for="atleta8">Nome do Atleta 8</label>
                 <input type="text" id="atleta8" name="atleta8" class="form-control" required>
-                <button class="btn-floating disabled" id="edit8"><i class="material-icons">edit</i></button>
+            </div>
+            <div class="col s1">
+                <a class="btn-floating disabled" id="edit8"><i class="material-icons">edit</i></a>
+            </div>
             </div>
             <button id="btn-save" type="submit" class="btn btn-primary">Cadastrar Atletas</button>
         </form>
         <div id="message" class="mt-3"></div>
     </div>
-    <div class="mb-4">
-        <h3>Lista de Atletas</h3>
-        <button id="loadAthletes" class="btn btn-secondary mb-3">Carregar Lista de Atletas</button>
-        <ul id="athleteList" class="list-group"></ul>
+    <div id="etapa2" class="conteiner" style="display: none">
+        <h4>Confrontos</h4>
+        <div id="confrontosLista"></div>
+        <button id="listaResultados">Mostrar Resultados</button>
+    </div>
+    <div id="etapa3" class="container" style="display: none">
+        <h4>Resultado</h4>
+        <table id="tabelaAtletas">
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Vitórias</th>
+                <th>Saldo de Games</th>
+            </tr>
+        </table>
     </div>
 </body>
 

@@ -34,16 +34,19 @@ $router->add('PUT', '/atleta/{id}', [$atletaController, 'update']);
 
 $router->add('GET', '/confronto', [$confrontoController, 'list']);
 $router->add('GET', '/confronto/{id}', [$confrontoController, 'getById']);
+$router->add('GET', '/confronto/{id}/1', [$confrontoController, 'getNome1ById']);
+$router->add('GET', '/confronto/{id}/2', [$confrontoController, 'getNome2ById']);
+$router->add('GET', '/confronto/{id}/3', [$confrontoController, 'getNome3ById']);
+$router->add('GET', '/confronto/{id}/4', [$confrontoController, 'getNome4ById']);
 $router->add('POST', '/confronto', [$confrontoController, 'create']);
 $router->add('DELETE', '/confronto/{id}', [$confrontoController, 'delete']);
+$router->add('DELETE', '/confronto/all', [$confrontoController, 'deleteAll']);
 $router->add('PUT', '/confronto/{id}', [$confrontoController, 'update']);
+$router->add('PUT', '/confronto/{id}/saldos', [$confrontoController, 'atualizaSaldos']);
 
 
 $requestedPath = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
-//$pathItems = explode("/", $requestedPath);
-//$requestedPath = "/" . $pathItems[count($pathItems) - 2] . 
-//    (isset($pathItems[count($pathItems) - 1]) ? "/" . $pathItems[count($pathItems) - 1] : "");
-$requestedPath = str_replace('/public', '', $requestedPath);  // Remove '/public' do caminho
+$requestedPath = str_replace('/public', '', $requestedPath);
 
 echo "Caminho solicitado: " . $requestedPath;
 $router->dispatch($requestedPath);
