@@ -16,9 +16,9 @@ Super8 - Beach Tennis é voltado para jogadores de Beach Tennis que desejam uma 
 
 ## 🛠 Tecnologias Utilizadas
 
-- **Front-end**: Desenvolvido com **React** e **JavaScript** para uma experiência de usuário interativa e responsiva.
+- **Front-end**: Desenvolvido com **JavaScript** para uma experiência de usuário interativa e responsiva.
 - **Back-end**: Implementado em **PHP** para processamento de dados do torneio e gerenciamento das funcionalidades de lógica de jogo.
-- **Banco de Dados**: Utiliza **MySQL** para armazenamento seguro e persistente dos dados de atletas, confrontos, placares e resultados finais.
+- **Banco de Dados**: Utiliza **Postgres** para armazenamento seguro e persistente dos dados de atletas, confrontos, placares e resultados finais.
 
 ## 🎮 Como Usar
 
