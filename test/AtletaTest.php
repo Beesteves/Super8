@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\Atletas;
+namespace Tests;
 
 use PHPUnit\Framework\TestCase;
-use controllers\AtletaController;
-use models\Atleta;
+use AtletaController;
+use Atleta;
 
 class AtletaControllerTest extends TestCase
 {

@@ -4,7 +4,7 @@ namespace Tests\Confronto;
 
 use PHPUnit\Framework\TestCase;
 use ConfrontoController;
-use App\Models\Confronto;
+use Confronto;
 
 class ConfrontoControllerTest extends TestCase
 {
