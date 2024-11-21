@@ -18,6 +18,7 @@ document.getElementById("btn-save").onclick = async (event) => {
                     "Content-Type": "application/json"
                 },
             })
+            console.log("Todos os confrontos deletados!");
 
             await fetch('http://localhost:8000/public/atleta/all', {
                 method: "DELETE",
@@ -25,6 +26,7 @@ document.getElementById("btn-save").onclick = async (event) => {
                     "Content-Type": "application/json"
                 },
             })
+            console.log("Todos os atletas deletados!");
 
             let response;
             for (let i = 1; i <= 8; i++) {
@@ -53,7 +55,7 @@ document.getElementById("btn-save").onclick = async (event) => {
             criaConfrontos();
             try {
                 result = JSON.parse(jsonString);
-                console.log(result);
+                console.log(result.message);
                     
                 if (response.ok) {
                     messageDiv.innerHTML = `<div class="alert alert-success">${result.message}</div>`;
@@ -99,6 +101,7 @@ async function editAtleta(id, nome) {
                     
             if (response.ok) {
                 messageDiv.innerHTML = `<div class="alert alert-success">${result.message}</div>`;
+                console.log(result.message);
                 mostrarConfronto();
             } else {
                 messageDiv.innerHTML = `<div class="alert alert-danger">${result.message || 'Erro desconhecido.'}</div>`;
@@ -209,6 +212,7 @@ async function mostrarConfronto() {
                 </div>
                 <button id="enviarResultado${i}" class="btn-enviar">Enviar</button>
             </div>
+            <div id="mensagemConclusao" class="mt-3"></div>
         `;
 
         confrontosLista.appendChild(confrontoDiv);
@@ -247,7 +251,7 @@ async function mostrarAtleta1(id) {
         });
 
         const responseText = await response.text(); 
-        console.log("Resposta do servidor:", responseText); 
+        //console.log("Resposta do servidor:", responseText); 
 
         const regex = /"nome":"([^"]+)"/; 
         const match = responseText.match(regex); 
@@ -273,7 +277,7 @@ async function mostrarAtleta2(id) {
         });
 
         const responseText = await response.text(); 
-        console.log("Resposta do servidor:", responseText); 
+        //console.log("Resposta do servidor:", responseText); 
 
         const regex = /"nome":"([^"]+)"/; 
         const match = responseText.match(regex); 
@@ -299,7 +303,7 @@ async function mostrarAtleta3(id) {
         });
 
         const responseText = await response.text(); 
-        console.log("Resposta do servidor:", responseText); 
+        //console.log("Resposta do servidor:", responseText); 
 
         const regex = /"nome":"([^"]+)"/; 
         const match = responseText.match(regex); 
@@ -325,7 +329,7 @@ async function mostrarAtleta4(id) {
         });
 
         const responseText = await response.text(); 
-        console.log("Resposta do servidor:", responseText); 
+        //console.log("Resposta do servidor:", responseText); 
 
         const regex = /"nome":"([^"]+)"/; 
         const match = responseText.match(regex); 
@@ -345,6 +349,8 @@ async function mostrarAtleta4(id) {
 
 async function enviarResultados(id, resultado1, resultado2) {
 
+    const messageDiv = document.getElementById("mensagemConclusao");
+
     if (resultado1 !== "" && resultado2 !== "") {
         await fetch(`http://localhost:8000/public/confronto/${id}`, {
             method: "PUT",
@@ -354,8 +360,11 @@ async function enviarResultados(id, resultado1, resultado2) {
        await somarResultados(id, resultado1, resultado2); 
     }
 
-    
-    alert("Resultados atualizados com sucesso!");
+    messageDiv.innerHTML = `<div class="alert alert-warning">Resultados atualizados com sucesso!</div>`;
+
+    setTimeout(() => {
+        messageDiv.innerHTML = '';
+    }, 5000);
 }
 
 async function somarResultados(id, resultado1, resultado2) {
